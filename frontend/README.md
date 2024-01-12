@@ -1,30 +1,48 @@
-# React + TypeScript + Vite
+Dive into the world of itsteatv Blog, where insightful content meets cutting-edge technology. Built with the power of the MERN stack, this blog is not just about words; it's a fusion of MongoDB, Express.js, React, and Node.js, ensuring a seamless and dynamic user experience. Enhanced with TypeScript for robust code and Tailwind CSS for a sleek design
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# features i like to implement
 
-Currently, two official plugins are available:
+1. Authentication:
+   [ ] register
+   [ ] login
+   [ ] logout
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. user profile:
+   [ ] update username, email
+   [ ] current password, confirm current password, new password
+   [ ] upload new profile photo
+   [ ] delete profile picture
+   forgot password
 
-## Expanding the ESLint configuration
+3. posts:
+   [ ] create, edit, delete post
+   [ ] edit posts with markdown support
+   [ ] editing posts with category
+   [ ] post w/ category
+   [ ] posts w/ released date
+   [ ] route for checking created posts (my posts) with view, edit, delete
+   [ ] route for checking created posts by related author
+   [ ] route for checking posts created with a specific category
+   [ ] posts with draft or released status
+   [ ] posts' visibility (public or private)
+   [ ] comments section (editing, deleting comments)
+   [ ] like, dislike feature
+   [ ] popular posts, editors choice posts, popular authors
+   [ ] delete account (profile)
+   [ ] searching through posts
+   [ ] posts pagination
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+4. admin dashboard:
+   [ ] showing all users, all posts, all categories, all comments, adding new category,
 
-- Configure the top-level `parserOptions` property like this:
+**managing users in dashboard**:
+[ ] view profile, delete user, email, count, username
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+**managing comments in dashboard**:
+[ ] count, user commented, comment itself, delete comment
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**managing posts in dashboard**:
+[ ] count, user who posted, post title, view post, delete post
+
+**managing categories in dashboard**:
+[ ] count, category title, delete category
