@@ -1,55 +1,120 @@
 Dive into the world of itsteatv Blog, where insightful content meets cutting-edge technology. Built with the power of the MERN stack, this blog is not just about words; it's a fusion of MongoDB, Express.js, React, and Node.js, ensuring a seamless and dynamic user experience. Enhanced with TypeScript for robust code and Tailwind CSS for a sleek design
 
-# features i like to implement
+# Blog Features
 
-1. Authentication:
+## 1. Authentication:
 
-   - [ ] register
-   - [ ] login
-   - [ ] logout
+- [ ] register
 
-2. user profile:
+- [ ] login
 
-   - [ ] update username, email
-   - [ ] current password, confirm current password, new password
-   - [ ] upload new profile photo
-   - [ ] delete profile picture
-         forgot password
+- [ ] logout
 
-3. posts:
+## 2. user profile:
 
-   - [ ] create, edit, delete post
-   - [ ] edit posts with markdown support
-   - [ ] editing posts with category
-   - [ ] post w/ category
-   - [ ] posts w/ released date
-   - [ ] route for checking created posts (my posts) with view, edit, delete
-   - [ ] route for checking created posts by related author
-   - [ ] route for checking posts created with a specific category
-   - [ ] posts with draft or released status
-   - [ ] posts' visibility (public or private)
-   - [ ] comments section (editing, deleting comments)
-   - [ ] like, dislike feature
-   - [ ] popular posts, editors choice posts, popular authors
-   - [ ] delete account (profile)
-   - [ ] searching through posts
-   - [ ] posts pagination
+- [ ] username
 
-4. admin dashboard:
-   - [ ] showing all users, all posts, all categories, all comments, adding new category,
+- [ ] email
 
-**managing users in dashboard**:
+- [ ] bio
 
-- [ ] view profile, delete user, email, count, username
+- [ ] 1. current password 2. confirm current password 3. new password
 
-**managing comments in dashboard**:
+- [ ] social media link
 
-- [ ] count, user commented, comment itself, delete comment
+- [ ] upload new profile photo
 
-**managing posts in dashboard**:
+- [ ] forgot password
 
-- [ ] count, user who posted, post title, view post, delete post
+- [ ] delete profile picture
 
-**managing categories in dashboard**:
+- [ ] delete account (profile)
 
-- [ ] count, category title, delete category
+- [ ] user joined data
+
+## 3. posts:
+
+- **main features**:
+
+> - [ ] create, edit, delete post
+
+- **showing posts section**:
+
+> - [ ] post w/ category
+>
+> - [ ] posts w/ released date
+
+- **edit section**:
+
+> - [ ] edit posts with markdown support :
+>
+> - [ ] edit posts with a plus button which gives features like title, heading, image, quote ...
+>
+> - [ ] uploading image with caption feature
+>
+> - [ ] showing a preview of the post before publishing which incudes post title, desc, tags (topics)
+>
+> - [ ] editing posts with category
+>
+> ## _posts routes:_
+
+- [ ] route for checking created posts (my posts) with view, edit, delete
+
+> - [ ] showing likes, comments, reads
+
+- [ ] route for checking created posts by related author
+
+- [ ] route for checking posts created with a specific category
+
+- [ ] posts with draft or released status
+
+- [ ] posts' visibility (public or private)
+
+- [ ] comments section (editing, deleting comments)
+
+- [ ] like, dislike
+
+- [ ] popular posts, editors choice posts, popular authors
+
+- [ ] searching through posts
+
+- [ ] posts pagination
+
+## 4. admin dashboard:
+
+- showing
+
+> - [ ] all users
+> - [ ] all posts
+> - [ ] all categories
+> - [ ] all comments
+> - [ ] add new category
+
+**managing users**:
+
+> - [ ] view user's profile
+> - [ ] count
+> - [ ] delete user
+> - [ ] email
+> - [ ] username
+
+**managing comments**:
+
+> - [ ] count
+> - [ ] user commented
+> - [ ] comment itself
+> - [ ] delete comment
+
+**managing posts**:
+
+> - [ ] count
+> - [ ] author
+> - [ ] post title
+> - [ ] view post
+> - [ ] delete post
+
+**managing categories**:
+
+> - [ ] count
+> - [ ] category title
+> - [ ] delete category
