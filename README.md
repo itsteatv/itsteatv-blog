@@ -4,9 +4,9 @@ Dive into the world of itsteatv Blog, where insightful content meets cutting-edg
 
 ## 1. Authentication:
 
-- [ ] register
+- [ ] signup
 
-- [ ] login
+- [ ] signin
 
 - [ ] logout
 
