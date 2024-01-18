@@ -10,7 +10,7 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { TfiWrite } from "react-icons/tfi";
+import { GoLog } from "react-icons/go";
 import { Outlet } from "react-router-dom";
 import ItsteatvLogo from "./ItsteatvLogo";
 import SearchInput from "./SearchInput";
@@ -84,7 +84,7 @@ function Navbar() {
               variant="flat"
               className="sm:flex hidden bg-transparent"
             >
-              <TfiWrite />
+              <GoLog />
               Write
             </Button>
             <Button color="default" size="md">
