@@ -46,6 +46,7 @@ function Navbar() {
         isBordered
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
+        className="font-SometypeMono"
       >
         <NavbarContent>
           <NavbarMenuToggle
