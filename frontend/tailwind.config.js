@@ -13,7 +13,7 @@ export default {
       },
       fontFamily: {
         "SourceCodePro": ['Source Code Pro', 'monospace'],
-        "Space Grotesk": ['Space Grotesk', 'sans-serif']
+        "SometypeMono": ['Sometype Mono', 'monospace']
       }
     },
   },
