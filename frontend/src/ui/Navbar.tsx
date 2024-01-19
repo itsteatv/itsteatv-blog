@@ -10,6 +10,7 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { GoLog } from "react-icons/go";
 import { Outlet } from "react-router-dom";
 import ItsteatvLogo from "./ItsteatvLogo";
@@ -18,6 +19,7 @@ import SearchInput from "./SearchInput";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
 
   const menuItems = [
     "Profile",
@@ -53,7 +55,7 @@ function Navbar() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
           />
-          <NavbarBrand>
+          <NavbarBrand className="cursor-pointer" onClick={() => navigate("/")}>
             <ItsteatvLogo />
             <p className="font-bold text-inherit">itsteatv</p>
             {windowWidth >= 640 && <SearchInput />}
@@ -87,10 +89,19 @@ function Navbar() {
               <GoLog />
               Write
             </Button>
-            <Button color="default" size="md">
+            <Button
+              color="default"
+              size="md"
+              onClick={() => navigate("signup")}
+            >
               Sign Up
             </Button>
-            <Button color="primary" size="md" variant="flat">
+            <Button
+              color="primary"
+              size="md"
+              variant="flat"
+              onClick={() => navigate("signin")}
+            >
               Sign In
             </Button>
           </NavbarItem>
