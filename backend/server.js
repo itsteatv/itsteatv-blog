@@ -1,4 +1,4 @@
-import express from "express"
+import express, { json } from "express"
 import mongoose from "mongoose"
 import "dotenv/config"
 import bcrypt from "bcrypt"
@@ -91,8 +91,33 @@ server.post("/signup", (req, res) => {
 
         console.log(hashed_password);
     })
+})
 
+server.post("/signin", (req, res) => {
+    const { email, password } = req.body
 
+    User.findOne({ "personal_info.email": email }).then((user) => {
+        if (!user) {
+            return res.status(403).json({ "error": "Email not found" })
+        }
+
+        bcrypt.compare(password, user.personal_info.password, (error, result) => {
+            if (error) {
+                return res.status(403).json({ "error": "Error occured while logging, please try again" })
+            }
+
+            if (!result) {
+                return res.status(403).json({ "error": "Incorrect password" })
+            } else {
+                return res.status(200), json(formatDataToSend(user))
+            }
+        })
+
+        console.log(user);
+    }).catch((error) => {
+        console.log(error.message);
+        return res.status(500).json({ "error": error.message })
+    })
 })
 
 server.listen(PORT, () => {
