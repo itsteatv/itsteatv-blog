@@ -2,6 +2,7 @@ import express, { json } from "express"
 import mongoose from "mongoose"
 import "dotenv/config"
 import bcrypt from "bcrypt"
+import cors from "cors";
 import { emailRegex, passwordRegex } from "./regexPatterns.js";
 import jwt from "jsonwebtoken"
 
@@ -12,6 +13,7 @@ const server = express()
 const PORT = process.env.PORT || 3000
 
 server.use(express.json())
+server.use(cors())
 
 const connectDB = async () => {
     try {
@@ -80,7 +82,11 @@ server.post("/signup", (req, res) => {
         });
 
         user.save().then((u) => {
-            return res.status(200).json(formatDataToSend(u))
+            const responseData = {
+                ...formatDataToSend(u),
+                signup: true
+            };
+            return res.status(200).json(responseData);
         }).catch((error) => {
             if (error.code === 11000) {
                 return res.status(500).json({ "error": "Email already exists" })
@@ -109,7 +115,11 @@ server.post("/signin", (req, res) => {
             if (!result) {
                 return res.status(403).json({ "error": "Incorrect password" })
             } else {
-                return res.status(200), json(formatDataToSend(user))
+                const responseData = {
+                    ...formatDataToSend(user),
+                    signin: true
+                };
+                return res.status(200).json(responseData);
             }
         })
 
