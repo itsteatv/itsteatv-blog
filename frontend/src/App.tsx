@@ -27,7 +27,26 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          error: {
+            style: {
+              borderRadius: "1rem",
+              fontStyle: "italic",
+              backgroundColor: "#ddf8d7",
+              fontFamily: "monospace",
+            },
+          },
+          success: {
+            style: {
+              borderRadius: "1rem",
+              fontStyle: "italic",
+              backgroundColor: "#ddf8d7",
+              fontFamily: "monospace",
+            },
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }
