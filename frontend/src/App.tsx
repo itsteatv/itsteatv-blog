@@ -33,7 +33,7 @@ function App() {
             style: {
               borderRadius: "1rem",
               fontStyle: "italic",
-              backgroundColor: "#ddf8d7",
+              backgroundColor: "#f8d7da",
               fontFamily: "monospace",
             },
           },
