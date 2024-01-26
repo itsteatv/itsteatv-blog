@@ -9,9 +9,19 @@ type InputBoxProps = {
   type: string;
   size: "sm" | "md" | "lg";
   icon: React.ReactNode;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 };
 
-function InputBox({ name, type, placeholder, size, icon }: InputBoxProps) {
+function InputBox({
+  name,
+  type,
+  placeholder,
+  size,
+  icon,
+  onChange,
+  value,
+}: InputBoxProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -26,6 +36,8 @@ function InputBox({ name, type, placeholder, size, icon }: InputBoxProps) {
       type={inputType}
       size={size}
       placeholder={placeholder}
+      onChange={onChange}
+      value={value}
       endContent={
         type === "password" && (
           <button
