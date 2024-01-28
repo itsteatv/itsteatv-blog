@@ -30,6 +30,14 @@ function Navbar() {
     "write",
   ];
 
+  const isAuthItem = (item: string) => item === "Sign Up" || item === "Sign In";
+
+  const handleMenuItemClick = (item: string) => {
+    if (isAuthItem(item)) {
+      navigate(item.toLowerCase().replace(" ", ""));
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -118,7 +126,7 @@ function Navbar() {
                     : "foreground"
                 }
                 className="w-full"
-                href="#"
+                onClick={() => handleMenuItemClick(item)}
                 size="lg"
               >
                 {item}
