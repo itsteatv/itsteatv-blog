@@ -1,12 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { UserAuthAPI } from "../api/UserAuthAPI";
 import { UserAuthAPIData } from "../utils/types";
-import toast from "react-hot-toast";
 // import Cookies from "js-cookie";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 export function useUserAuth() {
   const [cookies, setCookies] = useCookies(["access_token"]);
+
+  const navigate = useNavigate();
 
   const { isPending, mutate: userAuth } = useMutation({
     mutationFn: (payload: UserAuthAPIData) => UserAuthAPI(payload),
@@ -24,6 +27,8 @@ export function useUserAuth() {
           maxAge: 15 * 24 * 60 * 60 * 1000,
           secure: true,
         });
+
+        navigate("/");
       }
     },
 
