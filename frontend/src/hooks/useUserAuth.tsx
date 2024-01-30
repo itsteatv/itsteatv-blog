@@ -28,7 +28,7 @@ export function useUserAuth() {
           secure: true,
         });
 
-        navigate("/");
+        navigate("/home");
       }
     },
 
