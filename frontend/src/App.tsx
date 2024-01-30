@@ -1,9 +1,12 @@
-import Navbar from "./ui/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import UserAuthForm from "./ui/UserAuthForm";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import AppLayout from "./ui/AppLayout";
+import Home from "./pages/Home";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const queryClient = new QueryClient({
@@ -21,10 +24,19 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar />}>
-            <Route path="signup" element={<UserAuthForm type="sign-up" />} />
-            <Route path="signin" element={<UserAuthForm type="sign-in" />} />
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate replace to="home" />} />
+            <Route path="home" element={Home} />
           </Route>
+          <Route path="*" element={<PageNotFound />} />
+          <Route path="signup" element={<UserAuthForm type="sign-up" />} />
+          <Route path="signin" element={<UserAuthForm type="sign-in" />} />
         </Routes>
       </BrowserRouter>
       <Toaster
