@@ -32,7 +32,7 @@ function App() {
             }
           >
             <Route index element={<Navigate replace to="home" />} />
-            <Route path="home" element={Home} />
+            <Route path="home" element={<Home />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
           <Route path="signup" element={<UserAuthForm type="sign-up" />} />
