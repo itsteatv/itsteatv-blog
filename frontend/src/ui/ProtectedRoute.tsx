@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 
-function ProtectedRoute({ children }) {
+type ProtectedRouteProps = {
+  children: ReactNode;
+};
+
+function ProtectedRoute({ children }: ProtectedRouteProps) {
   const [cookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
 
