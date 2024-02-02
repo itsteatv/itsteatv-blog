@@ -11,7 +11,6 @@ import {
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoLog } from "react-icons/go";
 import { Outlet } from "react-router-dom";
 import ItsteatvLogo from "./ItsteatvLogo";
 import SearchInput from "./SearchInput";
@@ -91,23 +90,28 @@ function Navbar() {
           <NavbarItem className="gap-2 hidden sm:flex">
             <Button
               radius="full"
-              variant="flat"
-              className="sm:flex hidden bg-transparent"
+              size="sm"
+              variant="light"
+              className="sm:flex hidden bg-transparent my-auto"
             >
-              <GoLog />
               Write
             </Button>
             <Button
+              className="my-auto"
               color="default"
-              size="md"
+              variant="faded"
+              radius="lg"
+              size="sm"
               onClick={() => navigate("signup")}
             >
               Sign Up
             </Button>
             <Button
+              className="my-auto bg-black text-white"
               color="primary"
-              size="md"
+              size="sm"
               variant="flat"
+              radius="lg"
               onClick={() => navigate("signin")}
             >
               Sign In
