@@ -4,3 +4,10 @@ export interface UserAuthAPIData {
   password: string;
   type: string;
 }
+
+export interface UserData {
+  fullname: string;
+  username: string;
+  email: string;
+  profile_img: string;
+}

@@ -1,9 +1,8 @@
-import { useCookies } from "react-cookie";
-import { UserAuthAPIData } from "../utils/types";
 import { url } from "../utils/url";
 import toast from "react-hot-toast";
+import { UserData } from "../utils/types";
 
-export const UserDataAPI = async (token: string): Promise<UserAuthAPIData> => {
+export const UserDataAPI = async (token: string): Promise<UserData> => {
   const requestOptions = {
     method: "GET",
     headers: {
