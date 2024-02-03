@@ -35,7 +35,8 @@ const formatDataToSend = function (user) {
         access_token,
         profile_img: user.personal_info.profile_img,
         username: user.personal_info.username,
-        fullname: user.personal_info.fullname
+        fullname: user.personal_info.fullname,
+        email: user.personal_info.email,
     }
 }
 
