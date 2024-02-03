@@ -130,6 +130,25 @@ server.post("/signin", (req, res) => {
     })
 })
 
+server.get("/user", async (req, res) => {
+    try {
+
+        const token = req.headers.authorization?.split(" ")[1];
+        const decoded = jwt.verify(token, process.env.SECRET_ACCESS_KEY);
+
+        const user = await User.findById(decoded.id);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const responseData = formatDataToSend(user);
+
+        return res.status(200).json(responseData);
+    } catch (error) {
+        return res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
