@@ -20,7 +20,7 @@ export function useUserAuth() {
 
         const access_token = data.access_token;
         Cookies.set("access_token", access_token, {
-          expires: (1 / (24 * 60 * 60)) * 15,
+          expires: 15,
           secure: true,
         });
 
