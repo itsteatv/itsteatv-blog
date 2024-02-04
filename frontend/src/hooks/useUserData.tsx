@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
 import { UserDataAPI } from "../api/UserDataAPI";
 
 export function useUserData() {
-  const [cookies] = useCookies(["access_token"]);
-  const token = cookies.access_token;
+  const token = Cookies.get("access_token");
+  console.log(token);
 
   const { isLoading, data: user } = useQuery({
     queryKey: ["user"],
