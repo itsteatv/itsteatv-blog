@@ -10,6 +10,7 @@ import { useUserAuth } from "../hooks/useUserAuth";
 import { emailRegex } from "../utils/regexPatterns";
 import { passwordRegex } from "../utils/regexPatterns";
 import toast from "react-hot-toast";
+import Spinner from "./Spinner";
 
 type UserAuthFormProps = {
   type: string;
@@ -126,7 +127,14 @@ function UserAuthForm({ type }: UserAuthFormProps) {
           radius="full"
           type="submit"
         >
-          {type.replace("-", " ")}
+          {isPending ? (
+            <>
+              Signing {type === "sign-in" ? "In" : "Up"}...
+              <Spinner />
+            </>
+          ) : (
+            type.replace("-", " ")
+          )}
         </Button>
         <div className="relative w-full flex items-center gap-2 my-4 opacity-10 uppercase text-black font-bold">
           <hr className="w-1/2 border-black" />
