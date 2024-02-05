@@ -21,6 +21,7 @@ import ItsteatvLogo from "./ItsteatvLogo";
 import SearchInput from "./SearchInput";
 import { useCookies } from "react-cookie";
 import { useUserData } from "../hooks/useUserData";
+import { useSignout } from "../hooks/useSignout";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +29,7 @@ function Navbar() {
   const [cookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
   const { isLoading, user } = useUserData();
+  const { isPending, signout } = useSignout();
   console.log(isLoading, user);
 
   const menuItems = [
@@ -135,6 +137,7 @@ function Navbar() {
                   className="transition-all duration-400"
                   key="logout"
                   color="danger"
+                  onClick={signout}
                 >
                   <div>
                     <p className="font-bold">Sign Out</p>
