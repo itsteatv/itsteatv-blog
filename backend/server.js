@@ -13,7 +13,10 @@ const server = express()
 const PORT = process.env.PORT || 3000
 
 server.use(express.json())
-server.use(cors())
+server.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
 
 const connectDB = async () => {
     try {
@@ -96,7 +99,6 @@ server.post("/signup", (req, res) => {
             return res.status(500).json({ "error": error.message })
         })
 
-        console.log(hashed_password);
     })
 })
 
@@ -116,10 +118,22 @@ server.post("/signin", (req, res) => {
             if (!result) {
                 return res.status(403).json({ "error": "Incorrect password" })
             } else {
+                const token = jwt.sign({ userId: user._id }, process.env.SECRET_ACCESS_KEY, {
+                    expiresIn: "15d",
+                });
+
+                res.cookie("access_token]", token, {
+                    httpOnly: true,
+                    maxAge: 15 * 24 * 60 * 60 * 1000,
+                    sameSite: "strict",
+                    secure: true,
+                });
+
                 const responseData = {
                     ...formatDataToSend(user),
-                    signin: true
+                    signin: true,
                 };
+
                 return res.status(200).json(responseData);
             }
         })
