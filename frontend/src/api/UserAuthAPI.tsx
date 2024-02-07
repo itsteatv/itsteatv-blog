@@ -11,6 +11,8 @@ export const UserAuthAPI = async (
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include" as RequestCredentials,
+    withCredntials: true,
   };
 
   const response = await fetch(
