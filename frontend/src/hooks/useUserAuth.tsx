@@ -18,13 +18,14 @@ export function useUserAuth() {
       } else {
         toast.success("Successfully signed in!");
 
-        const access_token = data.access_token;
-        Cookies.set("access_token", access_token, {
-          expires: 15,
-          secure: true,
-        });
+        const token = data.access_token;
 
-        navigate("/home");
+        if (token) {
+          localStorage.setItem("access_token", token);
+          navigate("/home");
+        } else {
+          console.error("Access token not found in response data!");
+        }
       }
     },
 
