@@ -118,11 +118,11 @@ server.post("/signin", (req, res) => {
             if (!result) {
                 return res.status(403).json({ "error": "Incorrect password" })
             } else {
-                const token = jwt.sign({ userId: user._id }, process.env.SECRET_ACCESS_KEY, {
+                const access_token = jwt.sign({ userId: user._id }, process.env.SECRET_ACCESS_KEY, {
                     expiresIn: "15d",
                 });
 
-                res.cookie("access_token]", token, {
+                res.cookie("access_token", access_token, {
                     httpOnly: true,
                     maxAge: 15 * 24 * 60 * 60 * 1000,
                     sameSite: "strict",
