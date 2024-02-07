@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import { ReactNode, useEffect } from "react";
 
 type ProtectedRouteProps = {
@@ -9,7 +8,8 @@ type ProtectedRouteProps = {
 function ProtectedRoute({ children }: ProtectedRouteProps) {
   const navigate = useNavigate();
 
-  const isAuthenticated = !!Cookies.get("access_token");
+  const isAuthenticated = !!localStorage.getItem("access_token");
+  console.log(isAuthenticated);
   const isProtectedRoute =
     location.pathname !== "/signin" && location.pathname !== "/signup";
 
