@@ -42,7 +42,8 @@ function Navbar() {
   ];
 
   const isAuthItem = (item: string) => item === "Sign Up" || item === "Sign In";
-  const isAuthenticated = !!cookies.access_token;
+  const isAuthenticated = !!localStorage.getItem("access_token");
+  console.log(isAuthenticated);
 
   const handleMenuItemClick = (item: string) => {
     if (isAuthItem(item)) {
