@@ -96,6 +96,7 @@ function UserAuthForm({ type }: UserAuthFormProps) {
             name="fullname"
             type="text"
             size="sm"
+            disabled={isPending}
             placeholder="Enter your full name"
             icon={<GoPerson />}
             onChange={(e) => setFullname(e.target.value)}
@@ -108,6 +109,7 @@ function UserAuthForm({ type }: UserAuthFormProps) {
           name="email"
           type="email"
           size="sm"
+          disabled={isPending}
           placeholder="Enter your email"
           icon={<GoMention />}
           onChange={(e) => setEmail(e.target.value)}
@@ -117,13 +119,17 @@ function UserAuthForm({ type }: UserAuthFormProps) {
           name="password"
           type="password"
           size="sm"
+          disabled={isPending}
           placeholder="Enter your password"
           icon={<GoKey />}
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
         <Button
-          className="capitalize font-SometypeMono"
+          disabled={isPending}
+          className="capitalize font-SometypeMono
+          disabled:bg-gray-200 disabled:cursor-not-allowed
+          "
           radius="full"
           type="submit"
         >
@@ -141,13 +147,17 @@ function UserAuthForm({ type }: UserAuthFormProps) {
           <p>or</p>
           <hr className="w-1/2 border-black" />
         </div>
-        <Button className="capitalize font-SometypeMono" radius="full">
+        <Button
+          disabled={isPending}
+          className="capitalize font-SometypeMono disabled:bg-gray-200 disabled:cursor-not-allowed"
+          radius="full"
+        >
           <FcGoogle />
           continue with google
         </Button>
         {type === "sign-in" ? (
           <p className="text-gray-500 font-SometypeMono text-center">
-            Don't have an account?
+            Don't have an account ?
             <Link to="/signup" className="underline text-black ml-1">
               Join us today
             </Link>

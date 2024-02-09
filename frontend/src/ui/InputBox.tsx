@@ -11,6 +11,7 @@ type InputBoxProps = {
   icon: React.ReactNode;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  disabled: boolean;
 };
 
 function InputBox({
@@ -21,6 +22,7 @@ function InputBox({
   icon,
   onChange,
   value,
+  disabled,
 }: InputBoxProps) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -31,13 +33,15 @@ function InputBox({
   return (
     <Input
       startContent={<span>{icon}</span>}
-      className="w-full max-w-[20rem] font-SourceCodePro"
+      className="w-full max-w-[20rem] font-SourceCodePro disabled:cursor-not-allowed"
       name={name}
       type={inputType}
       size={size}
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      isDisabled={disabled}
+      disableAnimation={true}
       endContent={
         type === "password" && (
           <button
