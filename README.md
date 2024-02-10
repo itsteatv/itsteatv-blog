@@ -4,11 +4,13 @@ Dive into the world of itsteatv Blog, where insightful content meets cutting-edg
 
 ## 1. Authentication:
 
-- [ ] signup
+- [x] signup
 
-- [ ] signin
+- [x] signin
 
-- [ ] logout
+- [x] signout
+
+- [ ] google oauth
 
 ## 2. user profile:
 
