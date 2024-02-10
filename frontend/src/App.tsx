@@ -7,6 +7,7 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Navbar from "./ui/Navbar";
+import Editor from "./pages/Editor";
 
 function App() {
   const queryClient = new QueryClient({
@@ -34,6 +35,7 @@ function App() {
           >
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<Home />} />
+            <Route path="write" element={<Editor />} />
           </Route>
 
           <Route path="signin" element={<UserAuthForm type="sign-in" />} />
