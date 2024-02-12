@@ -19,14 +19,12 @@ import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import ItsteatvLogo from "./ItsteatvLogo";
 import SearchInput from "./SearchInput";
-import { useCookies } from "react-cookie";
 import { useUserData } from "../hooks/useUserData";
 import { useSignout } from "../hooks/useSignout";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [cookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
   const { isLoading, user } = useUserData();
   const { isPending, signout } = useSignout();
