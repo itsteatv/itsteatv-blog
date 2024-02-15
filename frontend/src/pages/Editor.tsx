@@ -9,7 +9,7 @@ function Editor() {
   const token = localStorage.getItem("access_token");
 
   return (
-    <div className="flex items-center justify-center min-h-screen font-SometypeMono font-bold">
+    <div>
       {token === null ? (
         <Navigate replace to="signin" />
       ) : (
