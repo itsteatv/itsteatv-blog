@@ -35,9 +35,9 @@ function App() {
           >
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<Home />} />
-            <Route path="write" element={<Editor />} />
           </Route>
 
+          <Route path="write" element={<Editor />} />
           <Route path="signin" element={<UserAuthForm type="sign-in" />} />
           <Route path="signup" element={<UserAuthForm type="sign-up" />} />
           <Route path="*" element={<PageNotFound />} />
