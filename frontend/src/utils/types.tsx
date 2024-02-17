@@ -11,3 +11,7 @@ export interface UserData {
   email: string;
   profile_img: string;
 }
+
+export interface UseImageUploadOptions {
+  onImageUploaded: (url: string) => void;
+}
