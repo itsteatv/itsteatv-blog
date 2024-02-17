@@ -7,34 +7,108 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
+import { CloudinaryContext, Image } from "cloudinary-react";
+import { useImageUpload } from "../hooks/useImageUpload";
+import { useEffect, useState } from "react";
 
 function BlogEditor() {
+  const [imageUrl, setImageUrl] = useState("");
+  console.log(imageUrl);
+
+  const handleImageUpload = (uploadedImageUrl: string) => {
+    setImageUrl(uploadedImageUrl);
+  };
+
+  const { isPending, uploadImage } = useImageUpload({
+    onImageUploaded: handleImageUpload,
+  });
+
+  useEffect(() => {
+    const storedImageUrl = localStorage.getItem("imageUrl");
+    if (storedImageUrl) {
+      setImageUrl(storedImageUrl);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("imageUrl", imageUrl);
+  }, [imageUrl]);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", import.meta.env.VITE_PRESET_NAME);
+
+    uploadImage(formData);
+  };
+
   return (
-    <div className="flex items-center font-bold font-SometypeMono">
-      <Navbar>
-        <NavbarBrand>
-          <Link to="..">
-            <ItsteatvLogo />
-          </Link>
-          <p className="font-bold text-inherit hidden sm:flex">New Blog</p>
-        </NavbarBrand>
-        <NavbarContent justify="end">
-          <NavbarItem className="flex gap-2">
-            <Button
-              color="success"
-              variant="solid"
-              radius="full"
-              className="text-white"
-            >
-              Publish
-            </Button>
-            <Button color="default" variant="light" radius="full">
-              Save Draft
-            </Button>
-          </NavbarItem>
-        </NavbarContent>
-      </Navbar>
-    </div>
+    <CloudinaryContext cloudName={import.meta.env.VITE_CLOUD_NAME}>
+      {" "}
+      <>
+        <div className="flex items-center font-SometypeMono">
+          {/* START HEADER */}
+          <Navbar>
+            <NavbarBrand>
+              <Link to="..">
+                <ItsteatvLogo />
+              </Link>
+              <p className="hidden sm:flex">New Blog</p>
+            </NavbarBrand>
+            <NavbarContent justify="end">
+              <NavbarItem className="flex gap-2">
+                <Button
+                  color="success"
+                  variant="solid"
+                  radius="full"
+                  className="text-white"
+                >
+                  Publish
+                </Button>
+                <Button color="default" variant="light" radius="full">
+                  Save Draft
+                </Button>
+              </NavbarItem>
+            </NavbarContent>
+          </Navbar>
+          {/* END HEADER */}
+        </div>
+        <section>
+          {/* START EDITOR */}
+          <div>
+            {/* START BLOG BANNER */}
+            <div className="flex items-center justify-center my-10 w-full">
+              {/* Use label and input for file upload */}
+              <label htmlFor="file-upload">
+                <input
+                  id="file-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                />
+                {imageUrl ? (
+                  <Image
+                    publicId={imageUrl}
+                    width="960"
+                    className="lg:rounded-2xl"
+                  />
+                ) : (
+                  <img
+                    src="https://placehold.co/960x400/EEE/31343C?font=source-sans-pro&text=Blog%20Banner"
+                    alt="Blog Banner"
+                    className="lg:rounded-2xl"
+                  />
+                )}
+              </label>
+            </div>
+            {/* END BLOG BANNER */}
+          </div>
+        </section>
+      </>
+    </CloudinaryContext>
   );
 }
 
