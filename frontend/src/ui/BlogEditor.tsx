@@ -7,9 +7,11 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
+import Spinner from "./Spinner";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { useImageUpload } from "../hooks/useImageUpload";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
@@ -17,6 +19,7 @@ function BlogEditor() {
 
   const handleImageUpload = (uploadedImageUrl: string) => {
     setImageUrl(uploadedImageUrl);
+    toast.dismiss();
   };
 
   const { isPending, uploadImage } = useImageUpload({
@@ -39,9 +42,16 @@ function BlogEditor() {
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", import.meta.env.VITE_PRESET_NAME);
+    formData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
 
-    uploadImage(formData);
+    const uploadPromise = uploadImage(formData);
+    toast.loading("Uploading image...");
+
+    try {
+      await uploadPromise;
+    } catch (error) {
+      toast.error("Failed to upload image");
+    }
   };
 
   return (
@@ -89,18 +99,24 @@ function BlogEditor() {
                   onChange={handleFileUpload}
                   className="hidden"
                 />
-                {imageUrl ? (
-                  <Image
-                    publicId={imageUrl}
-                    width="960"
-                    className="lg:rounded-2xl"
-                  />
+                {isPending ? (
+                  <Spinner />
                 ) : (
-                  <img
-                    src="https://placehold.co/960x400/EEE/31343C?font=source-sans-pro&text=Blog%20Banner"
-                    alt="Blog Banner"
-                    className="lg:rounded-2xl"
-                  />
+                  <>
+                    {imageUrl ? (
+                      <Image
+                        publicId={imageUrl}
+                        width="960"
+                        className="lg:rounded-2xl"
+                      />
+                    ) : (
+                      <img
+                        src="https://placehold.co/960x400/EEE/31343C?font=source-sans-pro&text=Blog%20Banner"
+                        alt="Blog Banner"
+                        className="lg:rounded-2xl"
+                      />
+                    )}
+                  </>
                 )}
               </label>
             </div>
