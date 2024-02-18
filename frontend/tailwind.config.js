@@ -13,6 +13,7 @@ export default {
       },
       screens: {
         ">=400px": { "min": "9.375em", "max": "25em" },
+        ">=950px": { "min": "59.375em" },
       },
       fontFamily: {
         "SourceCodePro": ['Source Code Pro', 'monospace'],

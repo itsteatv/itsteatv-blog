@@ -107,7 +107,7 @@ function BlogEditor() {
                       <Image
                         publicId={imageUrl}
                         width="960"
-                        className="lg:rounded-2xl"
+                        className=">=950px:rounded-2xl"
                       />
                     ) : (
                       <img
