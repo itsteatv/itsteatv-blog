@@ -6,8 +6,8 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
+  Skeleton,
 } from "@nextui-org/react";
-import Spinner from "./Spinner";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { useImageUpload } from "../hooks/useImageUpload";
 import { useEffect, useState } from "react";
@@ -87,7 +87,7 @@ function BlogEditor() {
         </div>
         <section>
           {/* START EDITOR */}
-          <div>
+          <div className=">=960px:overflow-hidden">
             {/* START BLOG BANNER */}
             <div className="flex items-center justify-center my-10 w-full">
               {/* Use label and input for file upload */}
@@ -99,8 +99,12 @@ function BlogEditor() {
                   onChange={handleFileUpload}
                   className="hidden"
                 />
-                {isPending ? (
-                  <Spinner />
+                {!isPending ? (
+                  <div className="w-[960px] space-y-5 p-4">
+                    <Skeleton className="rounded-lg">
+                      <div className="h-[400px] rounded-lg bg-default-300"></div>
+                    </Skeleton>
+                  </div>
                 ) : (
                   <>
                     {imageUrl ? (
