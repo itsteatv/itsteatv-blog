@@ -6,8 +6,8 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
-  Skeleton,
 } from "@nextui-org/react";
+import Skeleton from "./Skeleton";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { useImageUpload } from "../hooks/useImageUpload";
 import { useEffect, useState } from "react";
@@ -99,12 +99,8 @@ function BlogEditor() {
                   onChange={handleFileUpload}
                   className="hidden"
                 />
-                {!isPending ? (
-                  <div className="w-[960px] space-y-5 p-4">
-                    <Skeleton className="rounded-lg">
-                      <div className="h-[400px] rounded-lg bg-default-300"></div>
-                    </Skeleton>
-                  </div>
+                {isPending ? (
+                  <Skeleton />
                 ) : (
                   <>
                     {imageUrl ? (
