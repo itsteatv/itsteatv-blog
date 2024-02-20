@@ -6,6 +6,7 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
+  Textarea,
 } from "@nextui-org/react";
 import Skeleton from "./Skeleton";
 import { CloudinaryContext, Image } from "cloudinary-react";
@@ -121,6 +122,18 @@ function BlogEditor() {
               </label>
             </div>
             {/* END BLOG BANNER */}
+
+            {/* START BLOG TITLE */}
+            <div className="flex items-center justify-center my-10 w-full">
+              <Textarea
+                variant="underlined"
+                label="Blog Title"
+                labelPlacement="inside"
+                placeholder="Enter your blog title"
+                className="max-w-[960px] w-full >=960px:mx-4"
+              />
+              {/* END BLOG TITLE */}
+            </div>
           </div>
         </section>
       </>
