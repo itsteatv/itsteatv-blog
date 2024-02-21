@@ -11,12 +11,19 @@ import {
 import Skeleton from "./Skeleton";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { useImageUpload } from "../hooks/useImageUpload";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { EditorContext } from "../pages/Editor";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
+  const {
+    blog,
+    blog: { title, banner, content, tags, desc },
+    setBlog,
+  } = useContext(EditorContext);
   console.log(imageUrl);
+  console.log(blog);
 
   const handleImageUpload = (uploadedImageUrl: string) => {
     setImageUrl(uploadedImageUrl);
@@ -32,7 +39,7 @@ function BlogEditor() {
     if (storedImageUrl) {
       setImageUrl(storedImageUrl);
     }
-  }, []);
+  }, [setBlog]);
 
   useEffect(() => {
     localStorage.setItem("imageUrl", imageUrl);
@@ -55,6 +62,24 @@ function BlogEditor() {
     }
   };
 
+  const handleTitleKeyDown = function (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
+  const handleTitleChange = function (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const newTitle = event.target.value;
+    setBlog((prevBlog) => ({
+      ...prevBlog,
+      title: newTitle,
+    }));
+  };
+
   return (
     <CloudinaryContext cloudName={import.meta.env.VITE_CLOUD_NAME}>
       {" "}
@@ -66,7 +91,9 @@ function BlogEditor() {
               <Link to="..">
                 <ItsteatvLogo />
               </Link>
-              <p className="hidden sm:flex">New Blog</p>
+              <p className="hidden sm:flex">
+                {title.length ? title : "New Blog"}
+              </p>
             </NavbarBrand>
             <NavbarContent justify="end">
               <NavbarItem className="flex gap-2">
@@ -131,6 +158,8 @@ function BlogEditor() {
                 labelPlacement="inside"
                 placeholder="Enter your blog title"
                 className="max-w-[960px] w-full >=960px:mx-4"
+                onKeyDown={handleTitleKeyDown}
+                onChange={handleTitleChange}
               />
               {/* END BLOG TITLE */}
             </div>
