@@ -3,8 +3,9 @@ import { Navigate } from "react-router-dom";
 import { createContext } from "react";
 import BlogEditor from "../ui/BlogEditor";
 import PublishForm from "../ui/PublishForm";
+import { Blog, EditorContextType } from "../utils/types";
 
-const blogPost = {
+const blogPost: Blog = {
   title: "",
   banner: "",
   content: [],
@@ -13,7 +14,9 @@ const blogPost = {
   author: { personal_info: {} },
 };
 
-export const EditorContext = createContext({});
+export const EditorContext = createContext<EditorContextType>(
+  {} as EditorContextType
+);
 
 function Editor() {
   const [blog, setBlog] = useState(blogPost);

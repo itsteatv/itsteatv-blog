@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface UserAuthAPIData {
   fullname?: string;
   email: string;
@@ -14,4 +16,20 @@ export interface UserData {
 
 export interface UseImageUploadOptions {
   onImageUploaded: (url: string) => void;
+}
+
+export interface Blog {
+  title: string;
+  banner: string;
+  content: any[]; //This any type will be updated later
+  tags: string[];
+  desc: string;
+  author: { personal_info: any }; //This any type will be updated later
+}
+
+export interface EditorContextType {
+  blog: Blog;
+  setBlog: Dispatch<SetStateAction<Blog>>;
+  editorState: string;
+  setEditorState: Dispatch<SetStateAction<string>>;
 }
