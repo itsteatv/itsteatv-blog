@@ -38,6 +38,10 @@ function BlogEditor() {
     const storedImageUrl = localStorage.getItem("imageUrl");
     if (storedImageUrl) {
       setImageUrl(storedImageUrl);
+      setBlog((prevBlog) => ({
+        ...prevBlog,
+        banner: storedImageUrl,
+      }));
     }
   }, [setBlog]);
 
