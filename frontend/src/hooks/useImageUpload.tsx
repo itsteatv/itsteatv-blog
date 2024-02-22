@@ -20,6 +20,7 @@ export function useImageUpload({ onImageUploaded }: UseImageUploadOptions) {
     onError: (data) => {
       console.log(data);
       toast.error(data.message);
+      toast.dismiss();
     },
   });
 
