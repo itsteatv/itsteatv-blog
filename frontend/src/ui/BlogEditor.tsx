@@ -17,11 +17,9 @@ import { EditorContext } from "../pages/Editor";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
-  const {
-    blog,
-    blog: { title, banner, content, tags, desc },
-    setBlog,
-  } = useContext(EditorContext);
+  const { blog, setBlog } = useContext(EditorContext);
+  const { title, banner, content, tags, desc } = blog;
+  
   console.log(imageUrl);
   console.log(blog);
 
