@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.29.0",
     "@nextui-org/react": "^2.2.9",
     "@supabase/supabase-js": "^2.39.3",
     "@tanstack/react-query": "^5.17.19",
