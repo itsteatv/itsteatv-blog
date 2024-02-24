@@ -149,13 +149,13 @@ function BlogEditor() {
                       <Image
                         publicId={imageUrl}
                         width="960"
-                        className=">=950px:rounded-2xl"
+                        className=">=970px:rounded-2xl"
                       />
                     ) : (
                       <img
                         src="https://placehold.co/960x400/EEE/31343C?font=source-sans-pro&text=Blog%20Banner"
                         alt="Blog Banner"
-                        className="lg:rounded-2xl"
+                        className=">=970px:rounded-2xl"
                       />
                     )}
                   </>
@@ -171,7 +171,7 @@ function BlogEditor() {
                 label="Blog Title"
                 labelPlacement="inside"
                 placeholder="Enter your blog title"
-                className="max-w-[960px] w-full >=960px:mx-4"
+                className="max-w-[960px] w-full >=990px:mx-4"
                 onKeyDown={handleTitleKeyDown}
                 onChange={handleTitleChange}
               />

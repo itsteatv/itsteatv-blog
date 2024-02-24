@@ -13,7 +13,7 @@ export default {
       },
       screens: {
         ">=400px": { "min": "9.375em", "max": "25em" },
-        ">=950px": { "min": "59.375em" },
+        ">=970px": { "min": "60.625em" },
         ">=960px": { "max": "60em" },
         ">=990px": { "max": "61.875em" },
       },
