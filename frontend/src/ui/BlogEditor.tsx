@@ -14,14 +14,26 @@ import { useImageUpload } from "../hooks/useImageUpload";
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { EditorContext } from "../pages/Editor";
+import EditorJS from "@editorjs/editorjs";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
   const { blog, setBlog } = useContext(EditorContext);
   const { title, banner, content, tags, desc } = blog;
-  
+
   console.log(imageUrl);
   console.log(blog);
+
+  useEffect(() => {
+    const editor = new EditorJS({
+      holder: "texteditor",
+      placeholder: "let's make some awesome content",
+    });
+
+    return () => {
+      editor.destroy;
+    };
+  }, []);
 
   const handleImageUpload = (uploadedImageUrl: string) => {
     setImageUrl(uploadedImageUrl);
@@ -115,7 +127,7 @@ function BlogEditor() {
           </Navbar>
           {/* END HEADER */}
         </div>
-        <section>
+        <section className="flex items-center justify-center">
           {/* START EDITOR */}
           <div className=">=960px:overflow-hidden">
             {/* START BLOG BANNER */}
@@ -163,8 +175,15 @@ function BlogEditor() {
                 onKeyDown={handleTitleKeyDown}
                 onChange={handleTitleChange}
               />
-              {/* END BLOG TITLE */}
             </div>
+            {/* END BLOG TITLE */}
+
+            {/* START TEXT EDITOR */}
+            <div
+              className="flex flex-col items-start mx-5 >=990px:mx-10"
+              id="texteditor"
+            ></div>
+            {/* END TEXT EDITOR */}
           </div>
         </section>
       </>
