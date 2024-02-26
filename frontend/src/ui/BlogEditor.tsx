@@ -14,6 +14,7 @@ import { useImageUpload } from "../hooks/useImageUpload";
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { EditorContext } from "../pages/Editor";
+import { editorTools } from "../utils/editorTools";
 import EditorJS from "@editorjs/editorjs";
 
 function BlogEditor() {
@@ -28,6 +29,7 @@ function BlogEditor() {
     const editor = new EditorJS({
       holder: "texteditor",
       placeholder: "let's make some awesome content",
+      tools: editorTools,
     });
 
     return () => {
@@ -180,7 +182,7 @@ function BlogEditor() {
 
             {/* START TEXT EDITOR */}
             <div
-              className="flex flex-col items-start mx-5 >=990px:mx-10"
+              className="flex flex-col items-start mx-14 >=990px:mx-20"
               id="texteditor"
             ></div>
             {/* END TEXT EDITOR */}

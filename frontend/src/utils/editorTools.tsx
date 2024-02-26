@@ -17,14 +17,49 @@ import Raw from "@editorjs/raw";
 // @ts-ignore
 import SimpleImage from "@editorjs/simple-image";
 
+const uploadImageByUrl = function (e: React.ChangeEvent<HTMLInputElement>) {
+  const link = new Promise((resolve, reject) => {
+    try {
+      resolve(e);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+  return link.then((url) => {
+    return {
+      success: 1,
+      file: { url },
+    };
+  });
+};
+
 export const editorTools = {
   checkList: Checklist,
   embed: Embed,
-  header: Header,
-  image: Image,
+  header: {
+    class: Header,
+    config: {
+      placeholder: "Type Heading...",
+    },
+  },
+  image: {
+    class: Image,
+    config: {
+      uploader: {
+        uploadByUrl: uploadImageByUrl,
+      },
+    },
+  },
   link: Link,
-  list: List,
-  quote: Quote,
+  list: {
+    class: List,
+    inlineToolbar: true,
+  },
+  quote: {
+    class: Quote,
+    inlineToolbar: true,
+  },
   raw: Raw,
   simpleImage: SimpleImage,
 };
