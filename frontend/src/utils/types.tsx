@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import EditorJS from "@editorjs/editorjs";
 
 export interface UserAuthAPIData {
   fullname?: string;
@@ -32,4 +33,5 @@ export interface EditorContextType {
   setBlog: Dispatch<SetStateAction<Blog>>;
   editorState: string;
   setEditorState: Dispatch<SetStateAction<string>>;
+  setTextEditor: Dispatch<SetStateAction<{ isReady: boolean }>> | EditorJS;
 }

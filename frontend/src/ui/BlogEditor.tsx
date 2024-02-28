@@ -19,23 +19,25 @@ import EditorJS from "@editorjs/editorjs";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
-  const { blog, setBlog } = useContext(EditorContext);
+  const { blog, setBlog, setTextEditor } = useContext(EditorContext);
   const { title, banner, content, tags, desc } = blog;
 
   console.log(imageUrl);
   console.log(blog);
 
   useEffect(() => {
-    const editor = new EditorJS({
-      holder: "texteditor",
-      placeholder: "let's make some awesome content",
-      tools: editorTools,
-    });
+    setTextEditor(
+      new EditorJS({
+        holder: "texteditor",
+        placeholder: "let's make some awesome content",
+        tools: editorTools,
+      })
+    );
 
     return () => {
       editor.destroy;
     };
-  }, []);
+  }, [setTextEditor]);
 
   const handleImageUpload = (uploadedImageUrl: string) => {
     setImageUrl(uploadedImageUrl);

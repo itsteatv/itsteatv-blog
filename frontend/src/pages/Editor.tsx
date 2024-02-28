@@ -21,12 +21,13 @@ export const EditorContext = createContext<EditorContextType>(
 function Editor() {
   const [blog, setBlog] = useState(blogPost);
   const [editorState, setEditorState] = useState("editor");
+  const [textEditor, setTextEditor] = useState({ isReady: false });
 
   const token = localStorage.getItem("access_token");
 
   return (
     <EditorContext.Provider
-      value={{ blog, setBlog, editorState, setEditorState }}
+      value={{ blog, setBlog, editorState, setEditorState, setTextEditor }}
     >
       <div>
         {token === null ? (
