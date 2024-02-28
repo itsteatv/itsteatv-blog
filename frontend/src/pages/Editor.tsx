@@ -27,7 +27,14 @@ function Editor() {
 
   return (
     <EditorContext.Provider
-      value={{ blog, setBlog, editorState, setEditorState, setTextEditor }}
+      value={{
+        blog,
+        setBlog,
+        editorState,
+        setEditorState,
+        setTextEditor,
+        textEditor,
+      }}
     >
       <div>
         {token === null ? (

@@ -34,4 +34,5 @@ export interface EditorContextType {
   editorState: string;
   setEditorState: Dispatch<SetStateAction<string>>;
   setTextEditor: Dispatch<SetStateAction<{ isReady: boolean }>> | EditorJS;
+  textEditor: { isReady: boolean };
 }

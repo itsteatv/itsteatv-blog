@@ -19,7 +19,8 @@ import EditorJS from "@editorjs/editorjs";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
-  const { blog, setBlog, setTextEditor } = useContext(EditorContext);
+  const { blog, setBlog, textEditor, setTextEditor, setEditorState } =
+    useContext(EditorContext);
   const { title, banner, content, tags, desc } = blog;
 
   console.log(imageUrl);
@@ -33,11 +34,36 @@ function BlogEditor() {
         tools: editorTools,
       })
     );
-
-    return () => {
-      editor.destroy;
-    };
   }, [setTextEditor]);
+
+  const handlePublishEvent = function () {
+    if (!banner.length) {
+      return toast.error("Upload your blog banner!");
+    }
+
+    if (!title.length) {
+      return toast.error("Blog title should not be empty!");
+    }
+
+    if (textEditor.isReady) {
+      textEditor
+        .save()
+        .then((data: { time: number; blocks: any[]; version: string }) => {
+          console.log(data);
+          if (data.blocks.length) {
+            setBlog({ ...blog, content: data });
+            setEditorState("publish");
+          } else {
+            toast.error(
+              "Before publishing your post you must write something!"
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
 
   const handleImageUpload = (uploadedImageUrl: string) => {
     setImageUrl(uploadedImageUrl);
@@ -116,6 +142,7 @@ function BlogEditor() {
             <NavbarContent justify="end">
               <NavbarItem className="flex gap-2">
                 <Button
+                  onClick={handlePublishEvent}
                   color="success"
                   variant="solid"
                   radius="full"
