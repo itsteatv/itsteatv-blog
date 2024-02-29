@@ -77,11 +77,11 @@ function BlogEditor() {
   useEffect(() => {
     const storedImageUrl = localStorage.getItem("imageUrl");
     if (storedImageUrl) {
-      setImageUrl(storedImageUrl);
       setBlog((prevBlog) => ({
         ...prevBlog,
         banner: storedImageUrl,
       }));
+      setImageUrl(storedImageUrl);
     }
   }, [setBlog]);
 
@@ -94,7 +94,7 @@ function BlogEditor() {
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+    formData.append("upload_preset", import.meta.env.VITE_PRESET_NAME);
 
     const uploadPromise = uploadImage(formData);
     toast.loading("Uploading image...");
