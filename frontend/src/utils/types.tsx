@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import EditorJS from "@editorjs/editorjs";
+import { OutputData } from "@editorjs/editorjs";
 
 export interface UserAuthAPIData {
   fullname?: string;
@@ -22,7 +23,7 @@ export interface UseImageUploadOptions {
 export interface Blog {
   title: string;
   banner: string;
-  content: any[]; //This any type will be updated later
+  content: OutputData;
   tags: string[];
   desc: string;
   author: { personal_info: any }; //This any type will be updated later

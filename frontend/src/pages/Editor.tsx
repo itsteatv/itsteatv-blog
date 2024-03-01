@@ -4,11 +4,18 @@ import { createContext } from "react";
 import BlogEditor from "../ui/BlogEditor";
 import PublishForm from "../ui/PublishForm";
 import { Blog, EditorContextType } from "../utils/types";
+import { OutputData } from "@editorjs/editorjs";
+
+const initialContent: OutputData = {
+  blocks: [],
+  time: 0,
+  version: "2.29.0",
+};
 
 const blogPost: Blog = {
   title: "",
   banner: "",
-  content: [],
+  content: initialContent,
   tags: [],
   desc: "",
   author: { personal_info: {} },

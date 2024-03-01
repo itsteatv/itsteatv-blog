@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ItsteatvLogo from "./ItsteatvLogo";
 import {
   Navbar,
   NavbarBrand,
@@ -12,10 +11,11 @@ import Skeleton from "./Skeleton";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import { useImageUpload } from "../hooks/useImageUpload";
 import { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { EditorContext } from "../pages/Editor";
 import { editorTools } from "../utils/editorTools";
 import EditorJS from "@editorjs/editorjs";
+import toast from "react-hot-toast";
+import ItsteatvLogo from "./ItsteatvLogo";
 
 function BlogEditor() {
   const [imageUrl, setImageUrl] = useState("");
@@ -31,10 +31,11 @@ function BlogEditor() {
       new EditorJS({
         holder: "texteditor",
         placeholder: "let's make some awesome content",
+        data: content,
         tools: editorTools,
       })
     );
-  }, [setTextEditor]);
+  }, [setTextEditor, content]);
 
   const handlePublishEvent = function () {
     if (!banner.length) {
@@ -94,7 +95,7 @@ function BlogEditor() {
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", import.meta.env.VITE_PRESET_NAME);
+    formData.append("upload_preset", "hya9f8ms");
 
     const uploadPromise = uploadImage(formData);
     toast.loading("Uploading image...");
@@ -125,7 +126,7 @@ function BlogEditor() {
   };
 
   return (
-    <CloudinaryContext cloudName={import.meta.env.VITE_CLOUD_NAME}>
+    <CloudinaryContext cloudName="dzu7lvro4">
       {" "}
       <>
         <div className="flex items-center font-SometypeMono">
@@ -163,7 +164,6 @@ function BlogEditor() {
           <div className=">=960px:overflow-hidden">
             {/* START BLOG BANNER */}
             <div className="flex items-center justify-center my-10 w-full">
-              {/* Use label and input for file upload */}
               <label htmlFor="file-upload">
                 <input
                   id="file-upload"
@@ -198,6 +198,7 @@ function BlogEditor() {
             {/* START BLOG TITLE */}
             <div className="flex items-center justify-center my-10 w-full">
               <Textarea
+                defaultValue={title}
                 variant="underlined"
                 label="Blog Title"
                 labelPlacement="inside"
