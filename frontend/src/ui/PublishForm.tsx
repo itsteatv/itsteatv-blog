@@ -39,6 +39,14 @@ function PublishForm() {
     setBlog({ ...blog, desc: newDesc });
   };
 
+  const handleDescKeyDown = function (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   return (
     <section>
       <div className="flex items-end justify-end">
@@ -49,29 +57,57 @@ function PublishForm() {
         />
       </div>
       {/* BANNER IMAGE */}
-      <div className="flex items-center justify-center w-full overflow-hidden">
-        <div className="mt-4 ">
-          {isPending ? (
-            <Skeleton />
-          ) : (
-            <>
-              {banner ? (
-                <Image
-                  src={banner}
-                  width="960"
-                  className=">=970px:rounded-2xl rounded-none"
-                />
-              ) : (
-                <img
-                  src="https://placehold.co/960x400/EEE/31343C?font=source-sans-pro&text=Blog%20Banner"
-                  alt="Blog Banner"
-                  className=">=970px:rounded-2xl"
-                />
-              )}
-            </>
-          )}
+      <div className="flex items-center justify-center flex-col w-full overflow-hidden">
+        <div>
+          <div className="mt-4 ">
+            {isPending ? (
+              <Skeleton />
+            ) : (
+              <>
+                {banner ? (
+                  <Image
+                    src={banner}
+                    width="960"
+                    className=">=970px:rounded-2xl rounded-none"
+                  />
+                ) : (
+                  <img
+                    src="https://placehold.co/960x400/EEE/31343C?font=source-sans-pro&text=Blog%20Banner"
+                    alt="Blog Banner"
+                    className=">=970px:rounded-2xl"
+                  />
+                )}
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* TITLE PREVIEW */}
+        <div className="my-10">
+          <div className="flex items-center justify-center">
+            {title ? (
+              <p className="text-black font-SometypeMono text-lg uppercase">
+                {title}
+              </p>
+            ) : (
+              <p className="text-black font-SometypeMono text-lg uppercase">
+                title
+              </p>
+            )}
+          </div>
+          {/* DESCRIPTION PREVIEW */}
+          <div className="flex items-center justify-center">
+            {desc ? (
+              <p className="text-black font-SometypeMono text-lg">{desc}</p>
+            ) : (
+              <p className="text-black font-SometypeMono text-lg">
+                Your blog description
+              </p>
+            )}
+          </div>
         </div>
       </div>
+
       {/* TITLE */}
       <div className="flex items-center justify-center my-10 w-full">
         <Input
@@ -89,6 +125,7 @@ function PublishForm() {
       <div className="flex items-center justify-center my-10 w-full">
         <Textarea
           onChange={handleBlogDescChange}
+          onKeyDown={handleDescKeyDown}
           defaultValue={desc}
           variant="faded"
           label="Blog Description"
