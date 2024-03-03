@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { EditorContext } from "../pages/Editor";
 import { GoX } from "react-icons/go";
-import { Image } from "@nextui-org/react";
+import { Image, Input, Textarea } from "@nextui-org/react";
 import Skeleton from "./Skeleton";
 
 function PublishForm() {
@@ -9,7 +9,10 @@ function PublishForm() {
     useContext(EditorContext);
   const { title, banner, content, tags, desc } = blog;
 
+  const maxDescLength = 150;
+
   console.log(content.blocks);
+  console.log(banner);
 
   const [isPending, setIsPending] = useState(true);
 
@@ -21,6 +24,19 @@ function PublishForm() {
 
   const handleCloseEvent = function () {
     setEditorState("editor");
+  };
+
+  const handleBlogTitleChange = function (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setBlog({ ...blog, title: e.target.value });
+  };
+
+  const handleBlogDescChange = function (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const newDesc = e.target.value.slice(0, maxDescLength);
+    setBlog({ ...blog, desc: newDesc });
   };
 
   return (
@@ -43,7 +59,7 @@ function PublishForm() {
                 <Image
                   src={banner}
                   width="960"
-                  className=">=970px:rounded-2xl"
+                  className=">=970px:rounded-2xl rounded-none"
                 />
               ) : (
                 <img
@@ -57,9 +73,35 @@ function PublishForm() {
         </div>
       </div>
       {/* TITLE */}
-      <p>{title}</p>
+      <div className="flex items-center justify-center my-10 w-full">
+        <Input
+          onChange={handleBlogTitleChange}
+          defaultValue={title}
+          type="text"
+          variant="faded"
+          label="Blog Title"
+          labelPlacement="inside"
+          placeholder="Enter your blog title"
+          className="max-w-[960px] w-full >=990px:mx-4"
+        />
+      </div>
       {/* DESCRIPTION */}
-      <p>{desc}</p>
+      <div className="flex items-center justify-center my-10 w-full">
+        <Textarea
+          onChange={handleBlogDescChange}
+          defaultValue={desc}
+          variant="faded"
+          label="Blog Description"
+          endContent={
+            <p className="text-sm text-gray-400 italic">
+              {desc.length}/{maxDescLength}
+            </p>
+          }
+          placeholder="Enter your blog description"
+          className="max-w-[960px] w-full >=990px:mx-4"
+          maxLength={maxDescLength}
+        />
+      </div>
       {/* CONTENT */}
       <p>
         {content.blocks.map((c) => {
