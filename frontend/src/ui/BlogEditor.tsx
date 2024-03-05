@@ -95,7 +95,7 @@ function BlogEditor() {
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "hya9f8ms");
+    formData.append("upload_preset", import.meta.env.UPLOAD_PRESET);
 
     const uploadPromise = uploadImage(formData);
     toast.loading("Uploading image...");
@@ -126,7 +126,7 @@ function BlogEditor() {
   };
 
   return (
-    <CloudinaryContext cloudName="dzu7lvro4">
+    <CloudinaryContext cloudName={import.meta.env.CLOUD_NAME}>
       {" "}
       <>
         <div className="flex items-center font-SometypeMono">
@@ -199,7 +199,7 @@ function BlogEditor() {
             <div className="flex items-center justify-center my-10 w-full">
               <Textarea
                 defaultValue={title}
-                variant="underlined"
+                variant="faded"
                 label="Blog Title"
                 labelPlacement="inside"
                 placeholder="Enter your blog title"
