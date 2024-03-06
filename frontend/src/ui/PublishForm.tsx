@@ -3,6 +3,7 @@ import { EditorContext } from "../pages/Editor";
 import { GoX } from "react-icons/go";
 import { Image, Input, Textarea } from "@nextui-org/react";
 import Skeleton from "./Skeleton";
+import Tag from "./Tag";
 
 function PublishForm() {
   const { blog, setBlog, textEditor, setTextEditor, setEditorState } =
@@ -137,6 +138,18 @@ function PublishForm() {
           placeholder="Enter your blog description"
           className="max-w-[960px] w-full >=990px:mx-4"
           maxLength={maxDescLength}
+        />
+      </div>
+      {/* TAGS */}
+      <div className="flex items-center justify-center my-10 w-full">
+        <Input
+          type="text"
+          variant="faded"
+          label="Tags"
+          labelPlacement="inside"
+          placeholder="Enter you blog tags"
+          className="max-w-[960px] w-full >=990px:mx-4"
+          endContent={<Tag tag="test" />}
         />
       </div>
       {/* CONTENT */}
