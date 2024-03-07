@@ -10,12 +10,10 @@ function PublishForm() {
     useContext(EditorContext);
   const { title, banner, content, tags, desc } = blog;
 
+  const [isPending, setIsPending] = useState(true);
   const maxDescLength = 150;
 
-  console.log(content.blocks);
-  console.log(banner);
-
-  const [isPending, setIsPending] = useState(true);
+  console.log(tags);
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,6 +43,23 @@ function PublishForm() {
   ) {
     if (event.key === "Enter") {
       event.preventDefault();
+    }
+  };
+
+  const handleTagsKeyDown = function (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) {
+    if (e.key === "Enter" || e.key === ",") {
+      e.preventDefault();
+
+      const tagInput = e.target as HTMLInputElement;
+      const tag = tagInput.value;
+
+      setBlog({ ...blog, tags: [...blog.tags, tag] });
+
+      tagInput.value = "";
+
+      console.log(tag);
     }
   };
 
@@ -143,13 +158,16 @@ function PublishForm() {
       {/* TAGS */}
       <div className="flex items-center justify-center my-10 w-full">
         <Input
+          onKeyDown={handleTagsKeyDown}
           type="text"
           variant="faded"
           label="Tags"
           labelPlacement="inside"
           placeholder="Enter you blog tags"
           className="max-w-[960px] w-full >=990px:mx-4"
-          endContent={<Tag tag="test" />}
+          endContent={tags.map((tag, index) => (
+            <Tag key={index} tag={tag} />
+          ))}
         />
       </div>
       {/* CONTENT */}
@@ -162,8 +180,6 @@ function PublishForm() {
           );
         })}
       </p>
-      {/* TAGS */}
-      <p>{tags}</p>
     </section>
   );
 }
