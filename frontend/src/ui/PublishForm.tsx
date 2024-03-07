@@ -11,6 +11,8 @@ function PublishForm() {
   const { title, banner, content, tags, desc } = blog;
 
   const [isPending, setIsPending] = useState(true);
+  const [tagInputValue, setTagInputValue] = useState("");
+
   const maxDescLength = 150;
 
   console.log(tags);
@@ -52,14 +54,16 @@ function PublishForm() {
     if (e.key === "Enter" || e.key === ",") {
       e.preventDefault();
 
-      const tagInput = e.target as HTMLInputElement;
-      const tag = tagInput.value;
+      const tag = tagInputValue.trim();
 
-      setBlog({ ...blog, tags: [...blog.tags, tag] });
+      if (tag !== "") {
+        setBlog({ ...blog, tags: [...blog.tags, tag] });
+      }
 
-      tagInput.value = "";
+      // Clear the input value
+      setTagInputValue("");
 
-      console.log(tag);
+      console.log("tagInput" + tagInputValue);
     }
   };
 
@@ -158,6 +162,8 @@ function PublishForm() {
       {/* TAGS */}
       <div className="flex items-center justify-center my-10 w-full">
         <Input
+          value={tagInputValue}
+          onChange={(e) => setTagInputValue(e.target.value)}
           onKeyDown={handleTagsKeyDown}
           type="text"
           variant="faded"
