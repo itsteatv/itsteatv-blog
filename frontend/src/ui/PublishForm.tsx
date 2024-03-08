@@ -4,6 +4,7 @@ import { GoX } from "react-icons/go";
 import { Image, Input, Textarea } from "@nextui-org/react";
 import Skeleton from "./Skeleton";
 import Tag from "./Tag";
+import toast from "react-hot-toast";
 
 function PublishForm() {
   const { blog, setBlog, textEditor, setTextEditor, setEditorState } =
@@ -14,6 +15,7 @@ function PublishForm() {
   const [tagInputValue, setTagInputValue] = useState("");
 
   const maxDescLength = 150;
+  const tagLimit = 5;
 
   console.log(tags);
 
@@ -56,11 +58,17 @@ function PublishForm() {
 
       const tag = tagInputValue.trim();
 
-      if (tag !== "") {
-        setBlog({ ...blog, tags: [...blog.tags, tag] });
+      if (tags.length < tagLimit) {
+        if (!tag) {
+          toast.error("Tag cannot be empty");
+        } else if (!tags.includes(tag)) {
+          setBlog({ ...blog, tags: [...blog.tags, tag] });
+        } else {
+          toast.error("Tag already exists");
+        }
+      } else {
+        toast.error(`You can only add ${tagLimit} tags`);
       }
-
-      // Clear the input value
       setTagInputValue("");
 
       console.log("tagInput" + tagInputValue);
