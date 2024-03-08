@@ -30,11 +30,11 @@ function Tag({ tag }: { tag: string }, key: number) {
           autoFocus
           size="sm"
         />
-      ) : (
+      ) : editedTag.trim() !== "" ? (
         <Chip key={key} onClick={handleEdit} variant="bordered">
           {editedTag}
         </Chip>
-      )}
+      ) : null}
     </div>
   );
 }
