@@ -1,11 +1,19 @@
 import { Chip, Input } from "@nextui-org/react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { EditorContext } from "../pages/Editor";
 
 function Tag({ tag }: { tag: string }, key: number) {
+  const { blog, setBlog } = useContext(EditorContext);
+  const { tags } = blog;
+
   console.log(tag);
 
   const [editing, setEditing] = useState(false);
   const [editedTag, setEditedTag] = useState(tag);
+
+  useEffect(() => {
+    setEditedTag(tag);
+  }, [tag]);
 
   const handleEdit = () => {
     setEditing(true);
@@ -16,6 +24,18 @@ function Tag({ tag }: { tag: string }, key: number) {
   };
 
   const handleSave = () => {
+    if (editedTag.trim() === "") {
+      const updatedTags = tags.filter((t) => t !== tag);
+      console.log(updatedTags);
+
+      setBlog({ ...blog, tags: updatedTags });
+    } else if (tag !== editedTag) {
+      const updatedTags = tags.map((t) => (t === tag ? editedTag : t));
+      console.log(updatedTags);
+
+      setBlog({ ...blog, tags: updatedTags });
+    }
+
     setEditing(false);
   };
 
