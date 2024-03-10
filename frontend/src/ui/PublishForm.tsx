@@ -16,6 +16,7 @@ function PublishForm() {
 
   const maxDescLength = 150;
   const tagLimit = 5;
+  const remainingTags = tagLimit - tags.length;
 
   console.log(tags);
 
@@ -62,7 +63,7 @@ function PublishForm() {
         if (!tag) {
           toast.error("Tag cannot be empty");
         } else if (!tags.includes(tag)) {
-          setBlog({ ...blog, tags: [...blog.tags, tag] });
+          setBlog({ ...blog, tags: [...tags, tag] });
         } else {
           toast.error("Tag already exists");
         }
@@ -175,7 +176,11 @@ function PublishForm() {
           onKeyDown={handleTagsKeyDown}
           type="text"
           variant="faded"
-          label="Tags"
+          label={`Tags ${
+            remainingTags > 0
+              ? `(${remainingTags} ${remainingTags === 1 ? "tag" : "tags"} left)`
+              : ""
+          }`}
           labelPlacement="inside"
           placeholder="Enter you blog tags"
           className="max-w-[960px] w-full >=990px:mx-4"
