@@ -47,6 +47,13 @@ function Tag({ tag }: { tag: string }, key: number) {
     setEditing(false);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSave();
+    }
+  };
+
   return (
     <div className="flex gap-4">
       {editing ? (
@@ -54,6 +61,7 @@ function Tag({ tag }: { tag: string }, key: number) {
           variant="underlined"
           value={editedTag}
           onChange={handleTagChange}
+          onKeyDown={handleKeyDown}
           onBlur={handleSave}
           autoFocus
           size="sm"
