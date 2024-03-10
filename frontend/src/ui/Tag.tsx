@@ -15,6 +15,14 @@ function Tag({ tag }: { tag: string }, key: number) {
     setEditedTag(tag);
   }, [tag]);
 
+  const handleTagDelete = function () {
+    const deletedTag = tags.filter((t) => t !== tag);
+
+    setBlog({ ...blog, tags: deletedTag });
+
+    console.log(deletedTag);
+  };
+
   const handleEdit = () => {
     setEditing(true);
   };
@@ -51,7 +59,12 @@ function Tag({ tag }: { tag: string }, key: number) {
           size="sm"
         />
       ) : editedTag.trim() !== "" ? (
-        <Chip key={key} onClick={handleEdit} variant="bordered">
+        <Chip
+          key={key}
+          onClose={handleTagDelete}
+          onClick={handleEdit}
+          variant="bordered"
+        >
           {editedTag}
         </Chip>
       ) : null}
